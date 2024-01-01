@@ -1,13 +1,12 @@
-#!/usr/bin/python3
-""" This modules handles Database Storage """
+# models/engine/db_storage.py
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, scoped_session
 from os import getenv
 from models.base_model import Base
 from models.city import City
 from models.place import Place
 from models.review import Review
 from models.state import State
-from sqlalchemy.orm import sessionmaker, scoped_session
 from models.user import User
 from models.amenity import Amenity
 
@@ -92,7 +91,6 @@ class DBStorage:
 
     def close(self):
         """
-        Because SQLAlchemy doesn't reload his `Session`
-        when it's time to insert new data, we force it to!
+        Closes the current database session
         """
         self.__session.close()
